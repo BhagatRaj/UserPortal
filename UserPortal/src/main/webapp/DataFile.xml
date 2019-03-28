@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+	<Employee>
+		<EmpID>51755948</EmpID>
+		<EmpName>Bhagat Raj Singh</EmpName>
+		<CompanyName>HCL TECHNOLOGIES</CompanyName>
+		<DOJ>Sept-17-2018</DOJ>
+		<WorkingLocation>Noida sectro-126</WorkingLocation>
+		<EmpProfile>Java Developer</EmpProfile>
+		<TechnicalSpecs>Spring Hibernate Struts Jsp Servlet RestAPI MySql</TechnicalSpecs>
+		<ProjectName>Price Chopper</ProjectName>
+		<ProjectState>SteadyState</ProjectState>
+		<ReportingManager>Sibananda kar</ReportingManager>
+	</Employee>
+
+</Employees>
