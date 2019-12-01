@@ -11,6 +11,7 @@ public class CreditCardBean extends LoginBeanVO {
 	private String cardType;
 	private String cardStatus;
 	private String cardDate;
+	private String toDate;
 	private String cardUser;
 	private String CVV;
 	
@@ -82,5 +83,12 @@ public class CreditCardBean extends LoginBeanVO {
 	}
 	public void setCreditExpYear(String creditExpYear) {
 		this.creditExpYear = creditExpYear;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
 	}	
+	
 }

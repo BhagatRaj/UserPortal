@@ -8,7 +8,7 @@
     
   
 
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/medCommon.css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -98,7 +98,7 @@ function isNumberKey(evt)
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     margin-bottom: 0px" class="top-bar black quote-box">
-        <form:form action="${pageContext.request.contextPath}/CreditController/submiCreditDetails" method="POST" modelAttribute="creditCardBean">
+        <form:form action="${pageContext.request.contextPath}/CreditController/submitCreditDetails" method="POST" modelAttribute="creditCardBean">
         
         	<h1 class="page-title">Credit Add</h1>
         	<p class="corner-button-style" style="border-radius: 15px;">

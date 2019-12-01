@@ -15,8 +15,8 @@
 
 <style type="text/css">
 
- .frm-txt{font-size: 14px; padding-top: 15px;text-align: left;}
- .body {margin: 10px;padding: 0;color: #000;font-family: Arial, Helvetica, sans-serif;font-size:13px; }
+ .frm-txt{font-size: 11px; padding-top: 15px;text-align: left;}
+ .body {margin: 10px;padding: 0;color: #000;font-family: AccDetailsrial, Helvetica, sans-serif;font-size:13px; }
  .pd-B15{padding-bottom: 15px;}
 
 .laptop-user-input{
@@ -69,13 +69,17 @@ background-image: url(${pageContext.request.contextPath}/backgroundWall/backgrou
     color: #968b8b;
     
     } 
+    .ccDetails{
+      width:90%;
+    }
+    
 </style>
 
 
   
 <script type="text/javascript">
 $( function() {
-    $("#cardDate").datepicker({  maxDate: new Date() });
+    $("#cardDate,#toDate").datepicker({  maxDate: new Date() });
   } );
 	
 	
@@ -93,7 +97,8 @@ $( function() {
 			data:'cardName='+currentValue,
 			
 			success:function(data){
-				console.log(data);
+				
+				console.log("success Data"+data);
 				var autData=data;
 				if(autData == ''){
 					document.getElementById('warning-pop').style.display='block';
@@ -120,8 +125,13 @@ function getCardDetails(){
 	var cardName=document.getElementById('cardName').value;
 	var cardNum=document.getElementById('cardNum').value;
 	var cardDate=document.getElementById('cardDate').value;
+	var toDate=document.getElementById('toDate').value;
+	
+	var cardNumber=cardNum.replace(/-/g, '');
+	
+	console.log("cardNumber"+cardNumber);
 
-	if(cardName==""|| cardNum=="" || cardDate==""){
+	if(cardName==""|| cardNum=="" || cardDate=="" || toDate==""){
 		alert('All Field Required');
 		return false;
 	}
@@ -132,22 +142,49 @@ function getCardDetails(){
 		url:'/UserPortal/CreditController/showCreditDetialsForCard',
 		type:'GET',
 		dataType:'json',
-		data:'cardName='+cardName+'&cardNum='+cardNum+'&cardDate='+cardDate,
+		data:'cardName='+cardName+'&cardNum='+cardNumber+'&cardDate='+cardDate+'&toDate='+toDate,
 		
 		success:function(data){
 			console.log(data);
 			var autData=data;
+			console.log("autData  "+autData);
+			var trHTML='';
 			if(autData == ''){
 				document.getElementById('warning-pop').style.display='block';
-			}else{
+			}else{	
 				document.getElementById('listOfEmiDetails').style.display='block';
+				for(var i=0; i<autData.length; i++){
+					 trHTML += 
+		                '<tr><td>' + autData[i].cardName+ 
+		                '</td><td>' + autData[i].cardNum  + 
+		                '</td><td>' + autData[i].creditExpAm + 
+		                '</td><td>' + autData[i].creditExpYear + 
+		                '</td><td>' + autData[i].comment + 
+		                '</td><td>' + autData[i].cardType + 
+		                '</td><td>' + autData[i].userName + 
+		                '</td></tr>';  
+				/*	
+					tr.append('<td>' + autData[i].cardName +'</td>');
+					tr.append('<td>' + autData[i].cardNum +'</td>');
+					tr.append('<td>' + autData[i].creditExpAm +'</td>');
+					tr.append('<td>' + autData[i].creditExpYear +'</td>');
+					tr.append('<td>' + autData[i].comment +'</td>');
+					tr.append('<td>' + autData[i].cardType +'</td>');
+					tr.append('<td>' + autData[i].userName +'</td>');*/
+					
+					
+					$('#tBody').append(trHTML);
+				}
+				
+				
+				/* document.getElementById('listOfEmiDetails').style.display='block';
 				document.getElementById("cardNa").innerHTML =autData[0];
 				document.getElementById("cardNu").innerHTML =autData[1];
 				document.getElementById("expense").innerHTML =autData[2];
 				document.getElementById("expenseYr").innerHTML =autData[3];
 				document.getElementById("expenseDesc").innerHTML =autData[4];
 				document.getElementById("typeCard").innerHTML =autData[5];
-				document.getElementById("userCard").innerHTML =autData[6];
+				document.getElementById("userCard").innerHTML =autData[6]; */
 			}
 		},
 		error: function(result){
@@ -183,7 +220,7 @@ function getCardDetails(){
     color: #7d0404;">
 		<fieldset style="border-radius:10px;">
 			<legend></legend>
-				<table>
+				<table class="ccDetails">
 					<tr>
 					<td class="frm-txt pd-B15">
 					<strong>Card Name:</strong> </td>
@@ -200,7 +237,11 @@ function getCardDetails(){
 					<strong>Card Number: </strong><input type="text" name="cardNum" id="cardNum" class="card-input"/>
 					</td>
 					<td class="frm-txt pd-B15">
-					<strong>Date: </strong><input type="text" name="cardDate" id="cardDate" class="card-input"/>
+					<strong>From Date: </strong><input type="text" name="cardDate" id="cardDate" class="card-input"/>
+					</td>
+					
+						<td class="frm-txt pd-B15">
+					<strong>To Date: </strong><input type="text" name="toDate" id="toDate" class="card-input"/>
 					</td>
 					
 					<td><input type="button" value="Get Details"  class="getDetails" onclick="getCardDetails()">
@@ -221,25 +262,27 @@ function getCardDetails(){
 	
 	
 	
-	<div id="listOfEmiDetails" class="listOfEmiDetails" style="display: none;">
+	<div id="listOfEmiDetails" class="listOfEmiDetails">
 	
 			<h3 class="listofExpense">List of Expense</h3>
 			
-	<table width="100%" border="0">
-	<thead>
+	<table  id="#table_1" width="100%" border="1">
+		<thead>
 		<tr>
-		<th width="10%">CardName </th>
-		<th width="10%">CardNumber </th>
-		<th width="10%">Expense</th>
-		<th width="10%">Expense Year</th>
-		<th width="30%">Expense Description</th>
-		<th width="10%">CardType</th>
-		<th width="10%">CardUser</th>
+		<th>CardName </th>
+		<th>CardNumber </th>
+		<th>Expense</th>
+		<th>Expense Year</th>
+		<th>Expense Description</th>
+		<th>CardType</th>
+		<th>CardUser</th>
 		</tr>
-	</thead>
-	<tbody>
+		</thead>
+		<tbody id="tBody"></tbody>
+		
+	
 
-<tr style=" font-family: monospace; color: rebeccapurple; text-align: center;">
+<!-- <tr id="cardResponseDetails" style=" font-family: monospace; color: rebeccapurple; text-align: center;">
 <td id="cardNa">
 	</td>
 	<td id="cardNu">
@@ -255,8 +298,7 @@ function getCardDetails(){
 		<td id="userCard">
 	</td>
 </tr>
-		
-	</tbody>
+		 -->
 	</table>
 	</div>
 	<div style="display: none; font-size: 28px;color: red;text-align:  center;font-family: monospace;" class="warning-pop" id="warning-pop" class="warning-pop" id="warning-pop">

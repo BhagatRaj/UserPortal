@@ -30,3 +30,18 @@ a.button {background: url("../resource/button_right_bg.png") no-repeat scroll ri
 .btnWrap,.btnbgRight,.btnTxt {display: inline-block;float: left;}
 a.button span {background: url("../resource/button_left_bg.png") no-repeat scroll 0 0 transparent;display: block;line-height: 14px;padding: 5px 4px 5px 12px;}
 .heading{font-family: sans-serif;font-style: normal;font-weight: bold;}
+.two-column #left-column {float: left;width: 216px;}
+.top-bar.black {background: #fff url(../backgroundWall/topbar-bg-black.jpg) repeat-x top;}
+.top-bar h1.gray,.top-bar h2.gray {font-size: 14px;font-weight: bold;line-height: 42px;padding-left: 15px;text-transform: uppercase;color: #E9E9E9;}
+.two-column #right-column {float: right;width: 684px;background-color: #fff;}
+#contentDiv {float: left;width: 924px;padding: 4px 0;position: fixed;}
+body,label,input,h1,h2,h3,h4,h5,h6,p,table,select,input,textarea,ul,li {font: normal 13px/23px Arial, sans-serif;margin: 0;padding: 0;list-style: none;}
+.page-title-main {background:url("../backgroundWall/main_menu_bgr_nor.jpg") repeat-x scroll center bottom transparent;color: white;font-size: 20px;font-weight: bold;padding-bottom: 8px;padding: 4px 551px 0px;}
+.backgroundReport{background: url(../backgroundWall/left_image_welcome.jpg) no-repeat top; height: 450px}
+ul#navlist {margin: 2px;padding: 0;list-style-type: none;width: 212px;}
+ul#navlist a {color: #666;font-weight: bold;display: block;width: 100%;background: url(../backgroundWall/left-nav-bg.jpg) repeat-x;text-decoration: none;padding: 6px 10px 7px 20px;}
+.empl-details{border-bottom: 1px solid #E9E9E9;
+    color: #8a8785;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 24px;}

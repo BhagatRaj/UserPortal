@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/medCommon.css"/>
-<title>AutoMobilePortal</title>
+
+<title>MainScreen</title>
 
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -15,182 +15,29 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <script src="<c:url value="/resource/theme1/js/userDivCommon.js"/>"></script>
+
+
 <style type="text/css">
-.login {
-	background-image: url(backgroundImage/back.jpg);
-}
-.bodyBackground{
-	background-image: url(bodybackground/images.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 84em;
-	height:10em;
-}
-.bikeImage{
-	background-image: url(bodybackground/avenger220 streeet.jpg);
-}
- h1 {
-    font-family: serif;
-    font-style: inherit;
-    font-color:white;
-     text-decoration: underline;
-} 
-/* ul{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	border: 1px solid #273746;
-	background-color: #148F77;
-}
-li {
-	 display: inline;
-	 float: left;
-   	 
-}
-li a {
-    display: block;
-    color: #17202A;
-    text-align: center;
-    padding: 14px 16px;
-   	text-decoration: initial;
-    font-size: 22px;
-    font-style: normal;
-}
- */li a:hover:not(.active) {
-    background-color: #ddd;
-}
-#fbar{
-	background:#f2f2f2;
-	border-top:1px solid #e4e4e4;
-	line-height:40px;
-	min-width:980px; 
-	font-family: arial,sans-serif;
-	margin-top:400px;
-	font-size: normal;
-}
-.gs{
-	padding-left:27px;
-	margin:0 !important;
-}
 
-#fsr{
-	fload:right;
-}
-a{
-	color:#666;
-}
+#content-wrap {padding: 0px !important;}
 
-.displayAutMob{
-padding-left:0px;
-margin-top: 0px;
-padding:76px;
-}
-.totalEmiDiv{
-padding-left:0px;
-margin-top: 0px;
-padding:76px;
+.header-left-top {height: 80px;padding-top: 10px;position: relative;}
 
-}
-
-.backroundImageWallPaper{
-	background-image: url(backgroundWall/background1.jpg);
-
-}
-.modelNum{
-	width: 170px;
-	background-color: floralwhite;
-	background-position: 10px 10px;
-	border-radius:4px;
-	height:31px;
-}
-.datepicker{
-	width: 150px;
-	background-color: floralwhite;
-	background-position: 10px 10px;
-	border-radius:4px;
-	height:22px;
-}
-
-#searchLoader{
- 	position: fixed;
-    left: 0px;
-    top: 0px;
-    left: 0;
-    z-index: 999999;
-    background-color: rgba(0, 0, 0, 0.82);
-    display: none;
-    cursor: not-allowed;
-    vertical-align: middle;
-    bottom: 0px;
-    right: 0px;
-}
-
-
-#serachLoader img{
-position: absolute;
-    left: 51%;
-    top: 54%;
-    transform: translate(-52%,-50%);
-    width: 265px;
-}
-
-.empl-details
-{
-    color: #0E68AA;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 35px;
-    border-bottom: 2px solid #2f2626;
-}
-
-.headingEmp{
-	color: #0E68AA;
-    font-size: 25px;
-    /* font-weight: 200; */
-    font-family: "Segoe UI","Selawik","Arial",sans-serif;
-    line-height: 1.42;
-    /* cursor: pointer; */
-    float: center;
-    /* font-size: 20px; */
-    /* line-height: 20px; */
-}
-.container-no-padding-horiz{
-	font-family: "Segoe UI","Selawik","Arial",sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
-}
-.info-div{
-    font-family: "Segoe UI","Selawik","Arial",sans-serif;
-    font-weight: 400;
-    font-size: 19px;
-    -webkit-font-smoothing: antialiased;
-    color: brown;
-}
-
-.left-row1{width:400px; float:left;}
-.right-row1{width:400px; float:right;}
- 
-.empDetails,.projDetails{
-	color: #0e68aa;
-	cursor: pointer;
-	font-size: 26px;
-	line-height: 20px;
-}
+.left-row1{width:229px; float:left;}
+.right-row1{width:256px; float:right;}
 
 ul.left-row1>li>label{
     color: #6b2525;
     outline: 0;
     padding: 2px 6px;
-    font-size: 15px;
+    font-size: 11px;
 }
 
 ul.right-row1>li>label{
     color: #6b2525;
     outline: 0;
     padding: 2px 6px;
-    font-size: 15px;
+    font-size: 11px;
 }
 
 
@@ -253,18 +100,43 @@ function submitData(){
 }	
 
 </script>
+
+
 </head>
-<body class="backroundImageWallPaper">
+<body>
 <div> 	
   	<jsp:include page="nav-bar.jsp"/>
   </div>
-
-<div class="bikeImage">
-</div>
-<div class="mainDiv" id="mainDiv" >
+  
+<div id="contentDiv" class="two-column">	
+<div id="left-column" class="spcolumn top-bar black corner-all" style="height: 846px; border-radius: 4px;">
+		<h2 class="gray">Lists</h2>
+		
+		
+		
+		<ul id="navlist">
+		
+		<li>
+		<a href="javascript:void(0)" onclick="getPages('contactUsLeads.htm?id=1006');" style="text-transform: capitalize;">Current Employement</a>
+		</li>
+		
+		<li>
+		<a href="javascript:void(0)" onclick="getPages('contactUsLeads.htm?id=1006');" style="text-transform: capitalize;">Contact Us Leads</a>
+		</li>
+		</ul>
+		</div>
+		
+		<div id="right-column" class="spcolumn corner-all" style="height: 846px; border-radius: 4px;">
+		
+		<div id="content-wrap">
+			<h1 class="page-title-main" style="height:40px;"><span style="display:block; width:205px; padding-bottom:10px; float:right;">	Employment Details
+			</span></h1>	
+			
+			
+			<div class="mainDiv" id="mainDiv" >
 <h1>${newKey}</h1>
 <c:choose>
-	<c:when test="${techStatus eq 'hcl'}">
+	<c:when test="${techStatus eq 'HCL'}">
 			<div align="center" class="empl-details">
 			${techStatus}
 			</div>
@@ -273,7 +145,7 @@ function submitData(){
 			
 			<span class="empDetails">Employment Details</span>
 
-              <div style="overflow: auto; border-bottom: 2px solid #cecece; padding: 20px 40px;">
+              <div style="overflow: auto; border-bottom: 2px solid #cecece; padding: 50px 0px;">
 
                      <ul class="left-row1">
 
@@ -306,7 +178,7 @@ function submitData(){
               </div>
 
               <span class="projDetails">Project Details</span>
-              <div style="overflow: auto; border-bottom: 2px solid #cecece; padding: 20px 40px;">
+              <div style="overflow: auto; border-bottom: 2px solid #cecece; padding: 13px 0px;">
               <ul class="left-row1">
                                       
                            <li><label>Project Code:</label><span>${projCode}
@@ -447,21 +319,12 @@ function submitData(){
 
 
 </div>
-
-
-<div class="_dQc _E2" id="fbar">
-<div class="fbar">
-	<span class="hrefLink" id="fsr">
-		<a class="gs" href="//www.google.co.in/intl/en/policies/privacy/?fg=1">Privacy</a>
-		<a class="gs" href="//www.google.co.in/intl/en/policies/terms/?fg=1">Terms</a>
-		<span style="display:inline-block;position:relative;">
-			<a class="gs" href="https://www.google.co.in/preferences?hl=en">Settings</a>
-		</span>
+			
 		
-	</span>
+		</div>
+		
+		</div>
 </div>
-</div>
- <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
-    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </body>
 </html>

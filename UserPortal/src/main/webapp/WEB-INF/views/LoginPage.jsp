@@ -344,8 +344,8 @@ function checkUserValidation(){
 							cssClass="userInput">
 							<form:option value="Select" label="Select" />
 				            <form:option value="HCLTECH" label="HCLTECH" />
-				            <form:option value="STRAWBERRY INFOTECH" label="STRAWBERRY" />
-				            <form:option value="KMG INFOTECH" label="KMG" />
+				            <form:option value="STRAWBERRY" label="STRAWBERRY" />
+				            <form:option value="KMG" label="KMG" />
 				            </form:select>
 				         </div>
 				         <br>

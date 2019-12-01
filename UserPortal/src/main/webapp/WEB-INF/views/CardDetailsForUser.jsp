@@ -12,18 +12,19 @@ body {
     font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
     font-size: 62.5%;
 }
-table{ width: 75%; }
+table{ width: 100%; }
 tr {border: 2px solid #AEAEAE;}
 
   
-  h1.creditHeading{
+   h1.creditHeading{
     font-family: serif;
     font-style: inherit;
-    font-color: white;
     text-decoration: none;
-    background: #00b1af;
+    /* background: #00b1af; */
     padding: 15px;
-    padding: 16px 500px 25px;
+    padding: 2px 441px 0px;
+    background-color: #403838;
+    color: white;
 }
 .headingTr{
     border: 1px solid #646464;

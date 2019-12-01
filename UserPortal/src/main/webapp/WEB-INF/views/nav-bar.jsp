@@ -16,6 +16,7 @@
   .detail-box.inner {visibility: hidden;position: absolute;top: 203px;z-index: 100}
 .detail-box {width: 452px;float: left;padding: 9px;background-color: #646464;color: #FFF;}
 #popup-mask {position: absolute;top: 0;left: 0;z-index: 99;background-color: #FFF;display: none;}
+.container-fluid li a{font-family: Arial, Helvetica, sans-serif;};
 
   </style>
   
@@ -79,10 +80,9 @@
     
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">MyProfile</a>
-    </div>
     <ul class="nav navbar-nav">
+    
+      <li><a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">Profile</a></li>
       <li class="active"><a href="#">Home</a></li>
       <li><a href="/UserPortal/CreditController/CreditDetails">CreditAdd</a>
       

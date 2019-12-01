@@ -103,9 +103,9 @@ public class HomeController {
 		
 		
        if("HCLTECH".equals(logBean.getDomain())) {
-    	  techStatus="HCLTECH";
+    	  techStatus="HCL";
 		}else if("STRAWBERRY".equals(logBean.getDomain())) {
-			techStatus="STRW";
+			techStatus="STW";
 		}else if("KMG".equals(logBean.getDomain())) {
 			techStatus="KMG";
 		}
@@ -130,7 +130,7 @@ public class HomeController {
        System.out.println("dfdfdfd>>>"+detailsBean.getEmpName()+"projDetailsResponse>>>>>>"+projDetailsResponse.getProjectCode());
        
 		model.put("techStatus", techStatus);
-		return "Index";
+		return "mainScreen";
 	}
                 
     @RequestMapping(value = "/Logout")
