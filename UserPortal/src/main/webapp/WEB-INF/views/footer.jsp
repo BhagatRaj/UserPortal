@@ -8,12 +8,22 @@
 </head>
 <body>
 
+<div id="footer" class="corner-all" style="border-radius: 4px;">
+		<ul>
+			<li><a href="">Terms &amp; Conditions</a> |</li>
+			<li><a href="">Disclaimer</a> |</li>
+			<li><a href="">Site Map</a></li>
+		</ul>
+		<p><!--&copy; Copyright Salary Plan 2010--></p>
+	</div>
+
+<!-- 
 <div class="footer-panel">
 		<p class="center">© 2017 - All Rights Reserved - MedBikePortal  | <a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
 		<span class="better-view">Best viewed in Google Chrome.</span></p>
 </div>
 			 -
 
-
+ -->
 </body>
 </html>

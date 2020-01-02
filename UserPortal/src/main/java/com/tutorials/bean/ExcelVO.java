@@ -5,7 +5,7 @@ public class ExcelVO {
 	String date;
 	String amount;
 	String owner;
-	String Description;
+	String description;
 	String validated;
 	String totalTransactionAmount;
 	
@@ -35,12 +35,13 @@ public class ExcelVO {
 		this.owner = owner;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-	public void setDescription(String description) {
-		Description = description;
-	}
+
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public String getTotalTransactionAmount() {
 		return totalTransactionAmount;
 	}

@@ -123,6 +123,10 @@ function submitData(){
 		<li>
 		<a href="javascript:void(0)" onclick="getPages('contactUsLeads.htm?id=1006');" style="text-transform: capitalize;">Contact Us Leads</a>
 		</li>
+		
+		<li>
+		<a href="javascript:void(0)" onclick="getPages('${pageContext.request.contextPath}/fileUploadController/upload');" style="text-transform: capitalize;">Upload Excel</a>
+		</li>
 		</ul>
 		</div>
 		

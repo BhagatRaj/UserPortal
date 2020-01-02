@@ -9,4 +9,7 @@ public abstract class Constants {
 	public static String INFO_MSG="Emi Completed";
 	public static String emptyString = "";
 	
+	public static String tenureData="15,20,30,40";
+	public static  String LOANDETAILSMODEL="loanDetailsModel";
+	
 }

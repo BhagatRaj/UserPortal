@@ -17,17 +17,34 @@
  
 </head>
 <body>
+<div>
+<p class="corner-button-style" style="border-radius: 15px; border-radius: 15px;
+    background-color: #403838;
+    color: #f9eeee;
+    font-weight: bold;
+    padding: 1px 100px;
+    text-align: center;">
+						Welcome
+						<span>${userName}</span>
+					</p>
  
-<div id="tabs" style="height: 450px;">
+ 
+ </div>
+<div id="tabs" style="height: auto;">
   <ul>
     <li><a href="#tabs-1" id="first">Credit Details</a></li>
-    <li><a href="#tabs-2" id="second">Credit List Details</a></li>   			
+    <li><a href="#tabs-2" id="second">Credit List Details</a></li>
+    <li><a href="#tabs-3" id="third">Data Upload</a></li>     			
   </ul>
   <div id="tabs-1">
   <jsp:include page="showCreditDetails.jsp"></jsp:include>
   </div>
   <div id="tabs-2">
    <jsp:include page="CardDetailsForUser.jsp"></jsp:include>
+  </div>
+  
+   <div id="tabs-3">
+   <jsp:include page="uploadExcelData.jsp"></jsp:include>
   </div>
  
 </div>

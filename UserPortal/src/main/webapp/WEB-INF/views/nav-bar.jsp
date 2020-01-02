@@ -82,9 +82,9 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
     
-      <li><a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">Profile</a></li>
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="/UserPortal/CreditController/CreditDetails">CreditAdd</a>
+      <li><a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">PROFILE</a></li>
+      <li class="active"><a href="#">HOME</a></li>
+      <li><a href="/UserPortal/CreditController/CreditDetails">ADD-CREDIT</a>
       
      <!--  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -93,11 +93,11 @@
           <li><a href="#">Page 1-3</a></li>
         </ul>
       </li> -->
-      <li><a href="/UserPortal/showEmiList?userName=${userName}">Emi List</a></li>
-      <li><a href="#">Currently Logged in by: ${userName}</a></li>
-      <li><a href="https://netbanking.hdfcbank.com/netbanking/CCLogin.html">Credit Card Details</a></li>
-      <li><a href="/UserPortal/showlaptopEmi?userName=${userName}">Loan/Emi</a></li>
-      <li><a href="/UserPortal/CreditController/showDetailsForCreditEmi?userName=${userName}">show Credit Details</a></li>
+      <li><a href="/UserPortal/showEmiList?userName=${userName}">EMI-LIST</a></li>
+      <li><a href="#">CURRENTLY LOGGED IN: ${userName}</a></li>
+      <li><a href="https://netbanking.hdfcbank.com/netbanking/CCLogin.html">CREDIT LINK</a></li>
+      <li><a href="/UserPortal/showlaptopEmi?userName=${userName}">LOAN-EMI</a></li>
+      <li><a href="/UserPortal/CreditController/showDetailsForCreditEmi?userName=${userName}">SHOW-CRED-DETAILS</a></li>
       
       <c:if test="${techStatus eq 'HCLTECH' }">
       	 <li><a href="/UserPortal/showEmiList?userName=${userName}">HCL</a></li>

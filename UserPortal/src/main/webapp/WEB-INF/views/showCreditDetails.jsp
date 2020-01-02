@@ -18,12 +18,35 @@
  .frm-txt{font-size: 11px; padding-top: 15px;text-align: left;}
  .body {margin: 10px;padding: 0;color: #000;font-family: AccDetailsrial, Helvetica, sans-serif;font-size:13px; }
  .pd-B15{padding-bottom: 15px;}
+ 
+ 
+ 
+ .errMsg{
+ font-size: 18px;
+    font-family: Arial sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: #696363;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 20px;
+ 
+ }
 
 .laptop-user-input{
 border-radius: 5px;
 border-color: lightgrey;
 width:150px;
 } 
+
+
+.highlight{
+
+	/* color: red;
+    background: #FF9933;
+ */
+}
 
 .showCreditDiv{
 background-image: url(${pageContext.request.contextPath}/backgroundWall/background6.jpg);
@@ -71,6 +94,14 @@ background-image: url(${pageContext.request.contextPath}/backgroundWall/backgrou
     } 
     .ccDetails{
       width:90%;
+    }
+    
+    #table_1 th{
+    background: #666666;
+    padding: 5px;
+    color: #fff;
+    border: solid 1px #999;
+    
     }
     
 </style>
@@ -121,8 +152,36 @@ $( function() {
 		}); 
 	}
 	
+	
+	
+	function validated(){
+		
+		var result=true;
+		$(".card-input").each(function(){
+			
+			var elem=$(this);
+			if(elem.val()=='undefined' || elem.val()==null || elem.val()=='' || elem.val=='Select'){
+				elem.addClass('highlight');
+				result = false;
+			}
+		});
+		
+		return result;
+		
+	}
+	
+	
+	function statusDisplay(message){
+		$('.errMsg').text(message).fadeIn(2000);
+		setTimeout(function(){
+			$('.errMsg').fadeOut(2000);	
+		},10000);
+		
+	}
+	
+	
 function getCardDetails(){
-	var cardName=document.getElementById('cardName').value;
+	/* var cardName=document.getElementById('cardName').value;
 	var cardNum=document.getElementById('cardNum').value;
 	var cardDate=document.getElementById('cardDate').value;
 	var toDate=document.getElementById('toDate').value;
@@ -132,74 +191,81 @@ function getCardDetails(){
 	console.log("cardNumber"+cardNumber);
 
 	if(cardName==""|| cardNum=="" || cardDate=="" || toDate==""){
-		alert('All Field Required');
+		
+		$("#errMsg").show();
+		//alert('All Field Required');
 		return false;
-	}
+	} */
  
 	
 	
-	 $.ajax({
-		url:'/UserPortal/CreditController/showCreditDetialsForCard',
-		type:'GET',
-		dataType:'json',
-		data:'cardName='+cardName+'&cardNum='+cardNumber+'&cardDate='+cardDate+'&toDate='+toDate,
+	//$("#errMsg").hide();	
+	
+	
+	if(validated()){
+		$('.errMsg').text("Please wait doing mapping...").fadeIn(2000);
+		$("#getDetaislBtn").addClass("aDisable");
 		
-		success:function(data){
-			console.log(data);
-			var autData=data;
-			console.log("autData  "+autData);
-			var trHTML='';
-			if(autData == ''){
-				document.getElementById('warning-pop').style.display='block';
-			}else{	
-				document.getElementById('listOfEmiDetails').style.display='block';
-				for(var i=0; i<autData.length; i++){
-					 trHTML += 
-		                '<tr><td>' + autData[i].cardName+ 
-		                '</td><td>' + autData[i].cardNum  + 
-		                '</td><td>' + autData[i].creditExpAm + 
-		                '</td><td>' + autData[i].creditExpYear + 
-		                '</td><td>' + autData[i].comment + 
-		                '</td><td>' + autData[i].cardType + 
-		                '</td><td>' + autData[i].userName + 
-		                '</td></tr>';  
-				/*	
-					tr.append('<td>' + autData[i].cardName +'</td>');
-					tr.append('<td>' + autData[i].cardNum +'</td>');
-					tr.append('<td>' + autData[i].creditExpAm +'</td>');
-					tr.append('<td>' + autData[i].creditExpYear +'</td>');
-					tr.append('<td>' + autData[i].comment +'</td>');
-					tr.append('<td>' + autData[i].cardType +'</td>');
-					tr.append('<td>' + autData[i].userName +'</td>');*/
+		var cardName=document.getElementById('cardName').value;
+		var cardNum=document.getElementById('cardNum').value;
+		var cardDate=document.getElementById('cardDate').value;
+		var toDate=document.getElementById('toDate').value;
+		
+		var cardNumber=cardNum.replace(/-/g, '');
+		
+		 $.ajax({
+				url:'/UserPortal/CreditController/showCreditDetialsForCard',
+				type:'GET',
+				dataType:'json',
+				data:'cardName='+cardName+'&cardNum='+cardNumber+'&cardDate='+cardDate+'&toDate='+toDate,
+				
+				success:function(data){
 					
+					console.log(data);
+					var autData=data;
+					console.log("autData  "+autData);
+					var trHTML='';
+					if(autData == ''){
+						document.getElementById('warning-pop').style.display='block';
+					}else{	
+						$('.errMsg').fadeOut(2000);
+						document.getElementById('listOfEmiDetails').style.display='block';
+						for(var i=0; i<autData.length; i++){
+							 trHTML += 
+				                '<tr><td>' + autData[i].cardName+ 
+				                '</td><td>' + autData[i].cardNum  + 
+				                '</td><td>' + autData[i].creditExpAm + 
+				                '</td><td>' + autData[i].creditExpMonth + 
+				                '</td><td>' + autData[i].comment + 
+				                '</td><td>' + autData[i].cardType + 
+				                '</td><td>' + autData[i].userName + 
+				                '</td></tr>';  
+							
+							$('#tBody').append(trHTML);
+						}
+						
+					}
+				},
+				error: function(result){
 					
-					$('#tBody').append(trHTML);
+					document.getElementById("cardNa").innerHTML ='';
+					document.getElementById("cardNu").innerHTML ='';
+					document.getElementById("expense").innerHTML ='';
+					document.getElementById("expenseYr").innerHTML ='';
+					document.getElementById("expenseDesc").innerHTML ='';
+					document.getElementById("typeCard").innerHTML ='';
+					document.getElementById("userCard").innerHTML ='';
+					document.getElementById('warning-pop').style.display='block';
+					
 				}
-				
-				
-				/* document.getElementById('listOfEmiDetails').style.display='block';
-				document.getElementById("cardNa").innerHTML =autData[0];
-				document.getElementById("cardNu").innerHTML =autData[1];
-				document.getElementById("expense").innerHTML =autData[2];
-				document.getElementById("expenseYr").innerHTML =autData[3];
-				document.getElementById("expenseDesc").innerHTML =autData[4];
-				document.getElementById("typeCard").innerHTML =autData[5];
-				document.getElementById("userCard").innerHTML =autData[6]; */
-			}
-		},
-		error: function(result){
-			
-			document.getElementById("cardNa").innerHTML ='';
-			document.getElementById("cardNu").innerHTML ='';
-			document.getElementById("expense").innerHTML ='';
-			document.getElementById("expenseYr").innerHTML ='';
-			document.getElementById("expenseDesc").innerHTML ='';
-			document.getElementById("typeCard").innerHTML ='';
-			document.getElementById("userCard").innerHTML ='';
-			document.getElementById('warning-pop').style.display='block';
-			
-		}
-	}); 
+			}); 
+		
+		
+	}else{
+		statusDisplay("Please fill all mandatory fields.");
+		
+	}
+	
 }
 </script>
 </head>
@@ -234,7 +300,16 @@ function getCardDetails(){
 						</select>
 					</td>
 					<td class="frm-txt pd-B15">
-					<strong>Card Number: </strong><input type="text" name="cardNum" id="cardNum" class="card-input"/>
+					<select id="cardNum" class="card-input" style="width: 180px;">
+        				<option value="select">Select</option>
+        				<c:forEach items="${ListDrop}" var="cardDrowpDown">
+						<option value="${cardDrowpDown.cardNum}">${cardDrowpDown.cardNum}</option>
+						</c:forEach>
+						</select>
+						
+					
+					
+					<!-- <strong>Card Number: </strong><input type="text" name="cardNum" id="cardNum" class="card-input"/> -->
 					</td>
 					<td class="frm-txt pd-B15">
 					<strong>From Date: </strong><input type="text" name="cardDate" id="cardDate" class="card-input"/>
@@ -244,7 +319,7 @@ function getCardDetails(){
 					<strong>To Date: </strong><input type="text" name="toDate" id="toDate" class="card-input"/>
 					</td>
 					
-					<td><input type="button" value="Get Details"  class="getDetails" onclick="getCardDetails()">
+					<td><input type="button" value="Submit"  class="getDetails"  id="getDetaislBtn" onclick="getCardDetails()">
 					</td>
 					</tr>
 					<tr>
@@ -258,16 +333,18 @@ function getCardDetails(){
 					</tr>
 				</table>			
 		</fieldset>
+		
+	<div class="errMsg" style="display:none;">All Fields are required.</div>
 	</div>
 	
 	
 	
-	<div id="listOfEmiDetails" class="listOfEmiDetails">
+	<div id="listOfEmiDetails" class="listOfEmiDetails" style="display: none;">
 	
 			<h3 class="listofExpense">List of Expense</h3>
-			
-	<table  id="#table_1" width="100%" border="1">
-		<thead>
+					
+	<table  id="table_1" width="100%" style="border: solid 1px #d5d5d5;">
+		<thead id="theadId">
 		<tr>
 		<th>CardName </th>
 		<th>CardNumber </th>

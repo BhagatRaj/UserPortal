@@ -31,9 +31,9 @@ public class Produces_XML_JSON_Example {
 		  
 		 	System.out.println("RestApi got hit-------");
 	        ProjectDetails proj = new ProjectDetails();
-	        proj.setProjectName("Price Chopper");
+	        proj.setProjectName("LeasePlan India");
 	        proj.setProjectCode("C/185733");
-	        proj.setGolubID("Bhagatrajsingh@golub.com");
+	        proj.setGolubID("bhagat_s@hcl.com");
 	        proj.setProjectDuration("5 Years");
 	        proj.setProjectLocation("New York(USA)");
 	        proj.setProjectState("Steady State");

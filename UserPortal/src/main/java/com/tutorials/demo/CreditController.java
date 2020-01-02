@@ -112,8 +112,13 @@ import com.tutorials.bean.CreditCardBean;
 						//System.out.println(responseEntity.getBody());
 						List<CreditCardBean> cardInfoList=creditDao.findCardDetailsForUser(userName);
 						//request.setAttribute("cardInfoList", cardInfoList);
+						
+						map.put("ListDrop", cardInfoList);
+						
 						model.addAttribute("cardInfoList", cardInfoList);
 						model.addAttribute("creditCardBean", creditCardBean);
+						
+						
 						return "creditDetailsTabs";
 					}
 		
@@ -133,7 +138,7 @@ import com.tutorials.bean.CreditCardBean;
 						cardBean.setToDate(toDate);
 						CreditCardBean cardBean2=new CreditCardBean();
 						showCreditList=creditDao.getcreditDetails(cardBean,userName,"showEmi");				
-						logger.info("CreditList"+showCreditList);
+						logger.info("CreditList>>"+showCreditList);
 						
 						request.setAttribute("showCreditList", showCreditList);
 						

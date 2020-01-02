@@ -1,6 +1,7 @@
 .detail-box {width: 452px;float: left;padding: 9px;background-color: #646464;color: #FFF;}
 .detailbox-model-name {height: 38px;background-color: #333}
 body,label,input,h1,h2,h3,h4,h5,h6,p,table,form,select,input,textarea,ul,li{font: normal 14px/23px Arial, sans-serif;list-style: none;}
+body {background-color: #E9E9E9;}
 .detail-content {background-color: #FFF;padding: 20px;color: #333;}
 .btnWrap {background: url("../resource/gray_button_right.png") no-repeat scroll 0 0 transparent;height: 24px;padding-left: 3px;position: relative;margin-right: 6px;}
 .btnbgRightpopup{background: url(../resource/button_right_bgr.png) no-repeat scroll right 0 transparent;float: left;height: 24px;}
@@ -45,3 +46,15 @@ ul#navlist a {color: #666;font-weight: bold;display: block;width: 100%;backgroun
     font-size: 24px;
     font-weight: bold;
     padding-bottom: 24px;}
+    
+    
+.header-left-emi ul#main-nav {height: 40px;background: url(../resource/main_menu_bgr_nor.jpg);padding-left: 4px;}
+	
+.header-left-emi ul#main-nav li {float: left;border-right: 1px solid #4A4C49;}    
+.header-left-emi ul#main-nav li a {display: block;float: left;color: #fff;font: bold 11px Arial, sans-serif;text-decoration: none;text-transform: uppercase;padding: 12px 14px 13px;}
+
+
+#footer {clear: both;height: 48px;background-color: #333;color: #E9E9E9; margin: 54px 0px 0px;}
+#footer ul li a {color: #E9E9E9;font-size: 11px;padding: 0 10px;text-decoration: none;}
+#footer ul {padding: 15px 0 0 10px;}
+#footer ul li {float: left;color: #FF9933}

@@ -286,7 +286,20 @@ function calluserSetup(){
 		alert("bad Request");
 		   window.location = "/demo/showSetup";
 		}); */
-
+		function showPopupDialog(id){
+		$( "#"+id ).dialog({
+			autoOpen: false,
+			height: 'auto',
+			width: 550,
+			modal: true,
+			title:"Message",
+			buttons: {
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+		}
 		
 function closeUserPopup(){
 			document.getElementById('userPopup').style.display="none";
@@ -294,7 +307,9 @@ function closeUserPopup(){
 		}		
 function checkUserValidation(){
 			if(document.getElementById('userValidate').value =="Y"){
-				document.getElementById('userPopup').style.display="block";
+				
+				showPopupDialog('registration-check');
+				//document.getElementById('userPopup').style.display="block";
 			}
 		}	
 
@@ -404,7 +419,9 @@ function checkUserValidation(){
 				
 				
 		
+				<div id="registration-check">
 				
+				</div>
 				
 				
 				
@@ -434,7 +451,7 @@ function checkUserValidation(){
 	
 	</div>
 				
-	<jsp:include page="footer.jsp"></jsp:include>
+	<%-- <jsp:include page="footer.jsp"></jsp:include> --%>
 	</form:form>
 	</div>
 </body>

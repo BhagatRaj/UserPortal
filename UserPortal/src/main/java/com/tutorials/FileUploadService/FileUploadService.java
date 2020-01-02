@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,11 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.tutorials.FileUploadDao.FileUploadDao;
 import com.tutorials.bean.ExcelVO;
+import com.tutorials.demo.CreditController;
 
 public class FileUploadService {
 
+	private Logger logger = Logger.getLogger(FileUploadService.class);
+	
 	@Autowired
 	FileUploadDao fileUploadDao;
+	
 	
 	public String uploadFileData(String inputFilePath){
 		Workbook workbook = null;
@@ -33,7 +38,7 @@ public class FileUploadService {
 				sheet = workbook.getSheetAt(0);
 				
 				/*Build the header portion of the Output File*/
-				String headerDetails= "EmployeeId,EmployeeName,Address,Country";
+				String headerDetails= "Date,Amount,Owner,Description,Validated";
 				String headerNames[] = headerDetails.split(",");
 				 
 				 /*Read and process each Row*/
@@ -54,6 +59,8 @@ public class FileUploadService {
 				        
 				        employeeList.add(excelTemplateVO);
 				 }
+				 
+				 logger.info("logger info ----"+employeeList);
 				 fileUploadDao.saveFileDataInDB(employeeList);
 				 
 			}

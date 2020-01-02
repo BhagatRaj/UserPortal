@@ -12,8 +12,8 @@ public class FileUploadDao extends BaseDAO{
 
 	
 	public boolean saveFileDataInDB(List<ExcelVO> employeeList){
-		String sql = "insert into EMPLOYEE (EMPLOYEEID, EMPLOYEENAME, ADDRESS, COUNTRY) "
-				+ " VALUES (:employeeId, :employeeName, :address, :country)";
+		String sql = "insert into expensedata (Date, Amount, Owner, Description, Validated) "
+				+ " VALUES (:date, :amount, :owner, :description, :validated)";
 		try {
 			List<Map<String, String>> batchUpdateParams = new ArrayList<>();
 			
@@ -24,7 +24,7 @@ public class FileUploadDao extends BaseDAO{
 					paramMap.put("owner", vo.getOwner());
 					paramMap.put("description", vo.getDescription());
 					paramMap.put("validated", vo.getValidated());
-					paramMap.put("totalTransact", vo.getTotalTransactionAmount());
+					//paramMap.put("totalTransactionAmount", vo.getTotalTransactionAmount());
 					batchUpdateParams.add(paramMap);
 				}
 				

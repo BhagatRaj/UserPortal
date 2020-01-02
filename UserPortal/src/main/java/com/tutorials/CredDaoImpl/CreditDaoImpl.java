@@ -115,7 +115,7 @@ public class CreditDaoImpl implements CreditDao {
 			}else {
 				
 				
-				sqlBuilder.append(" where CredExpMonth between"+"?"+" and "+"?");
+				sqlBuilder.append(" where CredExpMonth between"+"?"+" and "+"?"+"ORDER BY CredExpMonth");
 				//CDate(?) and CardNum=? ");
 			}
 			

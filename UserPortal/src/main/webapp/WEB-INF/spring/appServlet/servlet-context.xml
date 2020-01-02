@@ -41,6 +41,7 @@
 	<beans:property name="annotatedClasses">
 	<beans:list>
 		<beans:value>com.tutorials.userregbean.UserRegBean</beans:value>
+		
 	</beans:list>
 	</beans:property>
 	<beans:property name="hibernateProperties">
@@ -82,6 +83,10 @@
    
    <beans:bean id="creditDao" class="com.tutorials.CredDaoImpl.CreditDaoImpl">
    <beans:property name="dataSource" ref="dataSource"/>
+   </beans:bean>
+   
+   <beans:bean id="detaislDAO" class="com.tutorials.LoanDetailsImpl.LoanDetailsImpl">
+   <beans:property name="sessionFactory" ref="sessionFactory"/>
    </beans:bean>
 
 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

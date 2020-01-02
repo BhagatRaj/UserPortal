@@ -288,7 +288,7 @@ function submitData(){
                                                        </span></li>                                                                                   
                      </ul>
 
-                     <ul class="right-row1">
+                     <ul class="right-row1" style="width: 273px;">
                            
                            <li><label>Tower:</label><span>${tower}
 
