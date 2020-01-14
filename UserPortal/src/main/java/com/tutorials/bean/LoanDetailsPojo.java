@@ -100,6 +100,10 @@ public class LoanDetailsPojo {
 	public void setContact_num(Integer contact_num) {
 		this.contact_num = contact_num;
 	}
+	public LoanDetailsPojo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 

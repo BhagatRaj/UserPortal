@@ -29,9 +29,14 @@ public class LoanDetailsVO {
 	private Date datetimeCreated;
 	private Date datetimeUpdated;
 	
-	@OneToOne(mappedBy="loanDetails",cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private UserLoanBean loanBean;
+
+	
+	private String property_name;
+	private String area_city;
+	private String prop_Address;
+	private String builder;
+	private Integer pincode;
+	private Integer contact_num;
 	
 	
 	@Id
@@ -109,47 +114,66 @@ public class LoanDetailsVO {
 	public Date getDatetimeUpdated() {
 		return datetimeUpdated;
 	}
+	
 	public void setDatetimeUpdated(Date datetimeUpdated) {
 		this.datetimeUpdated = datetimeUpdated;
 	}
 	
 	
-	public UserLoanBean getLoanBean() {
-		return loanBean;
+	@Column(name="user_flag",length=100)
+	public String getUser_flag() {
+		return user_flag;
 	}
-	public void setLoanBean(UserLoanBean loanBean) {
-		this.loanBean = loanBean;
-	}
-	public LoanDetailsVO(Integer loanId, String loan_bank_name, String loan_type, Integer tenure, Double emi,
-			String user_flag, Date loan_date, Date emi_paid_date, Date datetimeCreated, Date datetimeUpdated,
-			UserLoanBean loanBean) {
-		super();
-		this.loanId = loanId;
-		this.loan_bank_name = loan_bank_name;
-		this.loan_type = loan_type;
-		this.tenure = tenure;
-		this.emi = emi;
+	public void setUser_flag(String user_flag) {
 		this.user_flag = user_flag;
-		this.loan_date = loan_date;
-		this.emi_paid_date = emi_paid_date;
-		this.datetimeCreated = datetimeCreated;
-		this.datetimeUpdated = datetimeUpdated;
-		this.loanBean = loanBean;
 	}
 	
-	
-	public LoanDetailsVO() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Column(name="property_name",length=100)
+	public String getProperty_name() {
+		return property_name;
 	}
-	@Override
-	public String toString() {
-		return "LoanDetailsVO [loanId=" + loanId + ", loan_bank_name=" + loan_bank_name + ", loan_type=" + loan_type
-				+ ", tenure=" + tenure + ", emi=" + emi + ", user_flag=" + user_flag + ", loan_date=" + loan_date
-				+ ", emi_paid_date=" + emi_paid_date + ", datetimeCreated=" + datetimeCreated + ", datetimeUpdated="
-				+ datetimeUpdated + ", loanBean=" + loanBean + "]";
+	public void setProperty_name(String property_name) {
+		this.property_name = property_name;
 	}
 	
+	@Column(name="area_city",length=100)
+	public String getArea_city() {
+		return area_city;
+	}
+	public void setArea_city(String area_city) {
+		this.area_city = area_city;
+	}
 	
+	@Column(name="prop_address",length=100)
+	public String getProp_Address() {
+		return prop_Address;
+	}
+	public void setProp_Address(String prop_Address) {
+		this.prop_Address = prop_Address;
+	}
+	
+	@Column(name="builder",length=100)
+	public String getBuilder() {
+		return builder;
+	}
+	public void setBuilder(String builder) {
+		this.builder = builder;
+	}
+	
+	@Column(name="pin_code",length=100)
+	public Integer getPincode() {
+		return pincode;
+	}
+	public void setPincode(Integer pincode) {
+		this.pincode = pincode;
+	}
+	
+	@Column(name="contact_num",length=100)
+	public Integer getContact_num() {
+		return contact_num;
+	}
+	public void setContact_num(Integer contact_num) {
+		this.contact_num = contact_num;
+	}
 	
 }

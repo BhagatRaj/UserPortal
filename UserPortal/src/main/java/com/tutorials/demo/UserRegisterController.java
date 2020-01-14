@@ -78,11 +78,10 @@ public String changePassword(ModelMap model, HttpServletRequest request,
 @RequestMapping(value = "/passWordChange")
 public String passWordChange(ModelMap model,@ModelAttribute("changePassword") ChangePassword changePassword,HttpServletRequest request,
 				HttpServletResponse responsemode) throws Exception
-				{	
-					HttpSession session = request.getSession();
-					if(session.getAttribute(com.tutorials.Utils.Constants.USER_SESSION_MODEL)!=null)
+		{	
+			HttpSession session = request.getSession();
+			if(session.getAttribute(com.tutorials.Utils.Constants.USER_SESSION_MODEL)!=null)
 		{
-			//LoginBean loginBean=null;
 		UserRegBean regBean=null;
 		String userEmail=null;
 		String changePasswordFromPortal=changePassword.getOldPassword();
@@ -106,15 +105,15 @@ public String passWordChange(ModelMap model,@ModelAttribute("changePassword") Ch
 		if(result!=null) {
 			
 			return "/";
-				}
+		}
 				
 				
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+}
+			return null;
 			
 		}
-					return null;
-					
-				}
 }

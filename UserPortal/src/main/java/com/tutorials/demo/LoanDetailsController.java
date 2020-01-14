@@ -51,24 +51,27 @@ public class LoanDetailsController {
 			logger.info("list value--"+tenList.get(j));
 			
 		}	
-		LoanDetailsPojo loanDetailsPojo=new LoanDetailsPojo();
+		//LoanDetailsPojo loanDetailsPojo=new LoanDetailsPojo();
 		
 		model.put("tenureList", tenList);
-		model.addAttribute("loanDetailsModel",loanDetailsPojo);
+		model.put("loanDetailsModel",new LoanDetailsVO());
 		return "LoanDetails";
 	}
 	
 	
 	@RequestMapping(value="/saveLoanDetails")
-	public String saveLoanDetails(@ModelAttribute("loanDetailsModel") LoanDetailsPojo loanDetailspojo, Model model) {
+	public String saveLoanDetails(@ModelAttribute("loanDetailsModel") LoanDetailsVO loanDetailsVO, Model model) {
 		
 		logger.info("Inside SaveLoanDetails--");
 		
 		String str=null;
 		try {
 			
-			str=loanDetailspojo.getArea_city();
+			str=loanDetailsVO.getArea_city();
 			
+			str=detaislDAO.saveLoanDetails(loanDetailsVO);
+			
+			model.addAttribute("str", str);
 			/*
 			
 			LoanDetailsVO detailsVO=new LoanDetailsVO();

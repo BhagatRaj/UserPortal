@@ -23,6 +23,17 @@
 color: red;
 }
 
+#upload-progress{
+    height: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+#upload-progress .progress-bar{
+	background: #bde1ff;
+    width: 0;
+    height: 20px;
+}
+
 </style>
 
 
@@ -36,6 +47,40 @@ $(document).ready(function() {
 	    $("#loanDate,#emiPaidDate").datepicker({  maxDate: new Date() });
 	  } );
 
+});
+
+$("#loanDetailsModel").submit(function(event){
+    event.preventDefault(); //prevent default action 
+    var post_url = $(this).attr("action"); //get form action url
+    var request_method = $(this).attr("method"); //get form GET/POST method
+    var form_data = new FormData(this); //Encode form elements for submission
+    
+    $.ajax({
+        url : post_url,
+        type: request_method,
+        data : form_data,
+		contentType: false,
+		processData:false,
+		xhr: function(){
+		//upload Progress
+		var xhr = $.ajaxSettings.xhr();
+		if (xhr.upload) {
+			xhr.upload.addEventListener('progress', function(event) {
+				var percent = 0;
+				var position = event.loaded || event.position;
+				var total = event.total;
+				if (event.lengthComputable) {
+					percent = Math.ceil(position / total * 100);
+				}
+				//update progressbar
+				$("#upload-progress .progress-bar").css("width", + percent +"%");
+			}, true);
+		}
+		return xhr;
+	}
+    }).done(function(response){ //
+        $("#server-results").html(response);
+    });
 });
 
 </script>
@@ -55,7 +100,7 @@ $(document).ready(function() {
                     <h2 class="title">Loan-Details-Form</h2>
                     
                     
-                    <form:form modelAttribute="loanDetailsModel" action=" ${pageContext.request.contextPath}/loanDetailsControl/saveLoanDetails" method="POST" id="loanDetailsModel">
+                    <form action="${pageContext.request.contextPath}/loanDetailsControl/saveLoanDetails" method="POST" id="loanDetailsModel">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -185,9 +230,11 @@ $(document).ready(function() {
                             </div>
                         </div>
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <input type="submit" name="submit" value="Submit Form" />
                         </div>
-                    </form:form>
+                    </form>
+                    <div id="upload-progress"><div class="progress-bar"></div></div> <!-- Progress bar added -->
+                    
                 </div>
             </div>
         </div>
@@ -195,62 +242,6 @@ $(document).ready(function() {
 
 </div>
 <%@ include file="footer.jsp"%>
-<%-- <div id="page-wrapper">
-
-<%@ include file="lapTopEmiPage.jsp"%>
-
-<div id="content" class="two-column">
-
-<div id="middle-column" style="border-radius: 4px;
-    height: 20px;">
-<h2>
-
-
-<spring:message code="lbl.page" text="Add New Employee" /></h2>
-
-<div class="ln-details" style="width: 735px; height:350px;
-    background-color: #fff;">
-    
-    
-    <form:form id="contactUsLeadForm" name="contactUsLeadForm" action="javascript:void(0)" method="post" onsubmit="return submitContactUsLeadForm('contactLeadListing')">		
-		<ul class="lft-form-wrap">
-		
-			<li style="padding-top:10px;*padding-top:60px;clear:both;">
-			<label>First Name</label><input class="txtbox" type="text" name="firstName" id="firstName" onkeypress="return validalphabet(event);" maxlength="" tabindex="">
-			<label>Last Name</label><input class="txtbox" type="text" name="lastName" id="lastName" maxlength="" onkeypress="return validalphabet(event);" tabindex="">
-			
-			</li>
-			
-			<li><label>Email ID</label><br><input class="txtbox" type="text" name="emailId" id="emailId" maxlength="" tabindex="">
-			<label>City</label><br><input class="txtbox" type="text" name="city" id="city" maxlength="" tabindex="" onkeypress="return validalphabet(event);"></li>
-			
-			
-			<li><label>Home Phone</label><br><input class="txtbox" type="text" name="homePhone" id="homePhone" title="Please enter numeric value for Home Phone" maxlength="" tabindex="">
-			<label>Office Phone</label><br><input class="txtbox" type="text" name="officePhone" id="officePhone" title="Please enter numeric value for Office Phone" maxlength="" tabindex=""></li>
-			
-			
-			<li><label>Mobile</label><br><input class="number txtbox" type="text" name="mobile" id="mobile" maxlength="" title="Please enter numeric value for Mobile" tabindex="">
-			<label class="orange-font" style="clear:both;">Date Created</label></li>
-			
-			
-			<li style="clear:both;"><span>From</span><br>              
-				<input type="text" class="datbox hasDatepicker" name="fromCreatedDate" id="fromCreatedDate"><img class="ui-datepicker-trigger" src="/spadminElig/resources/images/common/calender.jpg" alt="..." title="...">
-			</li>
-			<li style="clear:both;"><span>To</span><br>
-				<input type="text" class="datbox hasDatepicker" name="toCreatedDate" id="toCreatedDate"><img class="ui-datepicker-trigger" src="/spadminElig/resources/images/common/calender.jpg" alt="..." title="...">
-			</li>
-
-			<li><span class="btnWrap" style="float:right;padding-right:18px;padding-bottom:10px;" onclick="if (!(submitContactUsLeadForm(&quot;contactLeadListing&quot;))) {return false;}else{document.contactUsLeadForm.submit()}"><span class="btnbgRight"><span style="color:#fff; line-height: 24px;" class="btnTxt">SEARCH</span></span></span></li>
-		</ul>
-		
-		</form:form>
-</div>
-</div>
-	
-</div>
-</div>
-
- --%>
 
 </body>
 </html>
