@@ -16,6 +16,17 @@
   .detail-box.inner {visibility: hidden;position: absolute;top: 203px;z-index: 100}
 .detail-box {width: 452px;float: left;padding: 9px;background-color: #646464;color: #FFF;}
 #popup-mask {position: absolute;top: 0;left: 0;z-index: 99;background-color: #FFF;display: none;}
+.container-fluid li a{font-family: Arial, Helvetica, sans-serif;};
+
+.dropdown ul a {
+	float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+} 
+
 
   </style>
   
@@ -65,7 +76,7 @@
 			</p>
 			<br />
 			<div style="float: right;">
-				<span class="btnWrap" onclick="javascript:window.location.reload()"><span
+				<span class="btnWrap" onclick="javascript:window.location.reload('${ctx}/')"><span
 					class="btnbgRightpopup"><span
 						style="color: rgb(255, 255, 255); line-height: 24px;"
 						class="btnTxt">Refresh</span></span></span>
@@ -79,25 +90,24 @@
     
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">MyProfile</a>
-    </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="/UserPortal/CreditController/CreditDetails">CreditAdd</a>
+    
+      <li><a class="navbar-brand" href="/UserPortal/userRegController/viewMyProfile">PROFILE</a></li>
+      <li class="active"><a href="#">HOME</a></li>
+      <!-- <li><a href="/UserPortal/CreditController/CreditDetails">ADD-CREDIT</a></li> -->
       
-     <!--  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/UserPortal/CreditController/CreditDetails">ADD-CREDIT<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
+          <li><a href="/UserPortal/showEmiList?userName=${userName}">EMI-LIST</a></li>
+          <li><a href="https://netbanking.hdfcbank.com/netbanking/CCLogin.html">CREDIT LINK</a></li>
+          <li><a href="/UserPortal/showlaptopEmi?userName=${userName}">LOAN-EMI</a></li>
         </ul>
-      </li> -->
-      <li><a href="/UserPortal/showEmiList?userName=${userName}">Emi List</a></li>
-      <li><a href="#">Currently Logged in by: ${userName}</a></li>
-      <li><a href="https://netbanking.hdfcbank.com/netbanking/CCLogin.html">Credit Card Details</a></li>
-      <li><a href="/UserPortal/showlaptopEmi?userName=${userName}">Loan/Emi</a></li>
-      <li><a href="/UserPortal/CreditController/showDetailsForCreditEmi?userName=${userName}">show Credit Details</a></li>
+      </li> 
+      <%-- <li><a href="/UserPortal/showEmiList?userName=${userName}">EMI-LIST</a></li> --%>
+      <li><a href="#">CURRENTLY LOGGED IN: ${userName}</a></li>
+      <!-- <li><a href="https://netbanking.hdfcbank.com/netbanking/CCLogin.html">CREDIT LINK</a></li> -->
+      <%-- <li><a href="/UserPortal/showlaptopEmi?userName=${userName}">LOAN-EMI</a></li> --%>
+      <li><a href="/UserPortal/CreditController/showDetailsForCreditEmi?userName=${userName}">SHOW-CRED-DETAILS</a></li>
       
       <c:if test="${techStatus eq 'HCLTECH' }">
       	 <li><a href="/UserPortal/showEmiList?userName=${userName}">HCL</a></li>

@@ -1,0 +1,231 @@
+<style>
+.page-content {
+	color: #666;
+}
+.lpin-form {
+	position: relative;
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+.lpin-form .message-area {
+	position: absolute;
+	bottom: 7px;
+	left: 0;
+	right: 58px;
+	font-family: Tahoma,Geneva,Arial,sans-serif;
+	font-size: 11px;
+	text-align: right;
+	display: none;
+}
+.lpin-form .message-area .message-body {
+	border-radius: 5px;
+	padding: 0 15px;
+	display: inline-block;
+	border: 1px solid;
+}
+.lpin-form .message-area.error .message-body {
+	background-color: #ffecec;
+	border-color: #f5aca6;
+}
+.lpin-form .message-area.success .message-body {
+	background-color: #e8ffd8;
+	border-color: #94e878;
+}
+.lpin-form .form-element {
+	width: 322px;
+	display: inline-block;
+	margin-bottom: 8px;
+	padding: 0px 14px 0px;
+}
+.lpin-form .form-element.new-line {
+	width: 630px;
+	margin: 23px 3px 0px;
+}
+.lpin-form label {
+	color: #666;
+	width: 141px;
+	display: inline-block;
+}
+
+
+
+.lpin-form select{
+	border: 1px solid;
+    border-color: #dadada;
+    width: 80px;
+    border-radius: 5px;
+    height: 21px;
+    margin: 0px -30px 0px;
+}
+
+.lpin-form input {
+	border: 1px solid;
+	border-color: #dadada;
+	border-radius: 5px;
+}
+.lpin-form input[type=checkbox]+* {
+	vertical-align: text-bottom;
+}
+.lpin-form input:focus {
+	outline: none;
+	border-color: #9ecaed;
+	box-shadow: 0 0 10px #9ecaed;
+}
+.lpin-form input {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.lpin-form .car-details label.required::after {
+	content: ' *';
+	color: red;
+}
+.lpin-form .user-details label.required::after{
+	
+	content: ' *';
+	color: red;
+}
+
+.lpin-theme-button {
+	background: linear-gradient(180deg, #ffb155, #fe891f, #fd8017, #fd8b2e);
+	height: 20px;
+	display: inline-block;
+	padding: 1px 12px;
+	border: 1px solid #c55e00;
+	border-radius: 3px;
+	color: white;
+	line-height: 18px;
+}
+#carreplacementvoucher li {
+	list-style: circle;
+	font-size: 10px;
+	margin-left: 20px;
+}
+@keyframes spinner {
+	0% {
+		transform: translate3d(-50%, -50%, 0) rotate(0deg);
+	}
+	100% {
+		transform: translate3d(-50%, -50%, 0) rotate(360deg);
+	}
+}
+.processing-area.progressing {
+	position: relative;
+}
+.processing-area.progressing::before {
+	animation: 2s linear infinite spinner;
+	border: solid 5px #BBB;
+	border-bottom-color: #f57f29;
+	border-radius: 50%;
+	content: "";
+	height: 40px;
+	left: 50%;
+	opacity: inherit;
+	position: absolute;
+	top: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	transform-origin: center;
+	width: 40px;
+	will-change: transform;
+	z-index: 100;
+}
+.processing-area.progressing::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #00000011;
+	margin: -10px;
+}
+
+.login-btn-resale-assist {
+    color: #fff;
+    padding: 3px 16px;
+    border: 0;
+    border-radius: 20px;
+    font-weight: bold !important;
+    outline: 0;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 2px 1px 10px 4px;
+    background: #a59d9a;
+    /* font-size:14px !important; */
+    /* font-family:sans-serif; */
+    /* text-align: center; */
+}
+h1.page-title-benefits {background:url("../images/common/dotted-line.jpg") repeat-x scroll center bottom transparent;color: #FF9933;font-size: 15px;font-weight: bold;padding-bottom: 8px;}
+
+
+.user-details h1{
+	background: url(../images/common/dotted-line.jpg) repeat-x scroll center bottom transparent;
+    color: #888582;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 0px;
+}
+
+.user-details-empl h1{
+	background: url(../images/common/dotted-line.jpg) repeat-x scroll center bottom transparent;
+    color: #FF9933;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+	
+user-details-empl, input:read-only{
+	background-color: #eceaea;
+	
+}	
+	.car-details h1{
+	
+	background: url(../images/common/dotted-line.jpg) repeat-x scroll center bottom transparent;
+    color: #888582;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 12px;
+	margin-top: 44px;
+	}
+	
+	.other-benefits ul{
+		padding:15px 0 0 20px;
+	}
+	
+	
+	.other-benefits ul li {
+	color: black;
+	font-size: 11px;
+	list-style: disc outside none;
+}
+
+.message-area-otp,.message-area-verification{
+	font-size: 12px;
+    font-family: Tahoma,Geneva,Arial,sans-serif;
+    color: black;
+    text-align: center;
+    padding: 1px 1px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 21px 180px 0px;
+    background-color: #e8ffd8;
+    border-color: #94e878;
+	display:none;
+}
+
+.message-area-verify{
+	
+	font-size: 13px;
+	font-family: Arial sans-serif;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	background-color: #dc1010;
+	padding: 0px 7px 0px;
+	border: 1px solid black;
+	border-radius: 4px;
+	margin: 29px 50px 0px;
+	display:block;
+
+}
+
+</style>

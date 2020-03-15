@@ -95,12 +95,17 @@ public class CreditDaoImpl implements CreditDao {
 
 	
 	
-	public CreditCardBean getcreditDetails(CreditCardBean cardBean, String userName, String test) {
+	public List<CreditCardBean> getcreditDetails (CreditCardBean cardBean, String userName, String test) {
 		//String sql="select CardName,CardNum,CreditExp,CredExpMonth,ExpenseYear,Comment,CardType,CardUser from creditcard where CardName=? and CardNum=? and CardUser=?";
 		CreditCardBean cardBean2=null;
 		Connection connection=null;
 		List<CreditCardBean> cardBeansList=new ArrayList<>();
 		StringBuilder sqlBuilder=new StringBuilder();
+		String toDate=cardBean.getToDate();
+		String fromDate=cardBean.getCardDate();
+		
+		
+		
 		try {
 			
 			sqlBuilder.append(MedSqlConstants.queryForCreditDetailsList);
@@ -108,16 +113,19 @@ public class CreditDaoImpl implements CreditDao {
 			{
 				sqlBuilder.append(" where CardUser=? ");
 			}else {
-				sqlBuilder.append(" where CardName=? and CardNum=? and CredExpMonth=? and CardUser=? ");
+				
+				
+				sqlBuilder.append(" where CredExpMonth between"+"?"+" and "+"?"+"ORDER BY CredExpMonth");
+				//CDate(?) and CardNum=? ");
 			}
 			
 			connection=dataSource.getConnection();
 			PreparedStatement preparedStatement=connection.prepareStatement(sqlBuilder.toString());
 			if(!"addEmi".equals(test)) {
-			preparedStatement.setString(1, cardBean.getCardName());
-			preparedStatement.setString(2, cardBean.getCardNum());
-			preparedStatement.setString(3, cardBean.getCardDate());
-			preparedStatement.setString(4, userName);
+			preparedStatement.setString(1, cardBean.getCardDate());
+			preparedStatement.setString(2, cardBean.getToDate());
+			//preparedStatement.setString(3, cardBean.getCardNum());
+			
 			}else {
 				preparedStatement.setString(1, userName);
 			}
@@ -133,39 +141,39 @@ public class CreditDaoImpl implements CreditDao {
 				cardBean2.setComment(set.getString("Comment"));
 				cardBean2.setCardType(set.getString("CardType"));
 				cardBean2.setUserName(set.getString("CardUser"));
-				//cardBeansList.add(cardBean2);
+				cardBeansList.add(cardBean2);
 				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return cardBean2;		
+		return cardBeansList;		
 	}
 
-	@Override
-	public List<CreditCardBean> getcardNumber(String cardName) {
-		Connection connection=null;
-		List cadNumberList=new ArrayList();
-		try {
-			String sqlQuery="select distinct CardNum,CardType from creditcard where CardName=?";
-			CreditCardBean cardBean=null;
-			connection=dataSource.getConnection();
-			PreparedStatement preparedStatement=connection.prepareStatement(sqlQuery);
-			preparedStatement.setString(1, cardName);
-			ResultSet resultSet=preparedStatement.executeQuery();
-			while(resultSet.next()){
-				cardBean=new CreditCardBean();
-				cardBean.setCardNum(resultSet.getString("CardNum"));
-				cardBean.setCardType(resultSet.getString("CardType"));
-				cadNumberList.add(cardBean);
-				
-			}
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
-		return cadNumberList;
-	}
+				@Override
+				public List<CreditCardBean> getcardNumber(String cardName) {
+					Connection connection=null;
+					List cadNumberList=new ArrayList();
+					try {
+						String sqlQuery="select distinct CardNum,CardType from creditcard where CardName=?";
+						CreditCardBean cardBean=null;
+						connection=dataSource.getConnection();
+						PreparedStatement preparedStatement=connection.prepareStatement(sqlQuery);
+						preparedStatement.setString(1, cardName);
+						ResultSet resultSet=preparedStatement.executeQuery();
+						while(resultSet.next()){
+							cardBean=new CreditCardBean();
+							cardBean.setCardNum(resultSet.getString("CardNum"));
+							cardBean.setCardType(resultSet.getString("CardType"));
+							cadNumberList.add(cardBean);
+							
+						}
+						
+					}catch (Exception e) {
+						// TODO: handle exception
+					}
+					return cadNumberList;
+				}
 
 	public List <CreditCardBean>findCardDetailsForUser(String User){
 		Connection connection=null;

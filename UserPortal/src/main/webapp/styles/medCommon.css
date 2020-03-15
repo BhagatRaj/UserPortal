@@ -1,6 +1,7 @@
 .detail-box {width: 452px;float: left;padding: 9px;background-color: #646464;color: #FFF;}
 .detailbox-model-name {height: 38px;background-color: #333}
 body,label,input,h1,h2,h3,h4,h5,h6,p,table,form,select,input,textarea,ul,li{font: normal 14px/23px Arial, sans-serif;list-style: none;}
+body {background-color: #E9E9E9;}
 .detail-content {background-color: #FFF;padding: 20px;color: #333;}
 .btnWrap {background: url("../resource/gray_button_right.png") no-repeat scroll 0 0 transparent;height: 24px;padding-left: 3px;position: relative;margin-right: 6px;}
 .btnbgRightpopup{background: url(../resource/button_right_bgr.png) no-repeat scroll right 0 transparent;float: left;height: 24px;}
@@ -30,3 +31,30 @@ a.button {background: url("../resource/button_right_bg.png") no-repeat scroll ri
 .btnWrap,.btnbgRight,.btnTxt {display: inline-block;float: left;}
 a.button span {background: url("../resource/button_left_bg.png") no-repeat scroll 0 0 transparent;display: block;line-height: 14px;padding: 5px 4px 5px 12px;}
 .heading{font-family: sans-serif;font-style: normal;font-weight: bold;}
+.two-column #left-column {float: left;width: 216px;}
+.top-bar.black {background: #fff url(../backgroundWall/topbar-bg-black.jpg) repeat-x top;}
+.top-bar h1.gray,.top-bar h2.gray {font-size: 14px;font-weight: bold;line-height: 42px;padding-left: 15px;text-transform: uppercase;color: #E9E9E9;}
+.two-column #right-column {float: right;width: 684px;background-color: #fff;}
+#contentDiv {float: left;width: 924px;padding: 4px 0;position: fixed;}
+body,label,input,h1,h2,h3,h4,h5,h6,p,table,select,input,textarea,ul,li {font: normal 13px/23px Arial, sans-serif;margin: 0;padding: 0;list-style: none;}
+.page-title-main {background:url("../backgroundWall/main_menu_bgr_nor.jpg") repeat-x scroll center bottom transparent;color: white;font-size: 20px;font-weight: bold;padding-bottom: 8px;padding: 4px 551px 0px;}
+.backgroundReport{background: url(../backgroundWall/left_image_welcome.jpg) no-repeat top; height: 450px}
+ul#navlist {margin: 2px;padding: 0;list-style-type: none;width: 212px;}
+ul#navlist a {color: #666;font-weight: bold;display: block;width: 100%;background: url(../backgroundWall/left-nav-bg.jpg) repeat-x;text-decoration: none;padding: 6px 10px 7px 20px;}
+.empl-details{border-bottom: 1px solid #E9E9E9;
+    color: #8a8785;
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 24px;}
+    
+    
+.header-left-emi ul#main-nav {height: 40px;background: url(../resource/main_menu_bgr_nor.jpg);padding-left: 4px;}
+	
+.header-left-emi ul#main-nav li {float: left;border-right: 1px solid #4A4C49;}    
+.header-left-emi ul#main-nav li a {display: block;float: left;color: #fff;font: bold 11px Arial, sans-serif;text-decoration: none;text-transform: uppercase;padding: 12px 14px 13px;}
+
+
+#footer {clear: both;height: 48px;background-color: #333;color: #E9E9E9; margin: 54px 0px 0px;}
+#footer ul li a {color: #E9E9E9;font-size: 11px;padding: 0 10px;text-decoration: none;}
+#footer ul {padding: 15px 0 0 10px;}
+#footer ul li {float: left;color: #FF9933}

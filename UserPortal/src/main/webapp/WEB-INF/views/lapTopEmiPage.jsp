@@ -7,7 +7,14 @@
 <html>
 <head>
 
+
+
 <style type="text/css">
+
+ a:hover {
+  background-color: green;
+}
+
 .laptop-user-input{
 border-radius: 5px;
 border-color: lightgrey;
@@ -20,15 +27,13 @@ width:150px;
     clear: both;
     padding: 200px 0px 10px;
 }
+
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<style type="text/css">
-.lapViewBackround{
-background-image: url(backgroundWall/lightorangeback.jpg);
-}
-</style>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/medCommon.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/cssStyle/loanDetails.css"/>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Loan/EMI</title>
@@ -42,8 +47,32 @@ $( function() {
 <body class="lapViewBackround">
 
 
-<div>
-	<form:form action="${pageContext.request.contextPath}/submitlaptopEmi" method="POST" modelAttribute="laptopEmiBean" id="laptopEmiForm">        	
+<div class="header-left-emi">
+
+<ul id="main-nav" class="corner-left" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px;">
+			<li title="Discover how car leasing can change the way you drive"><a href="${pageContext.request.contextPath}/loanDetailsControl/addLoanDetails"> Add Loan Details </a></li>
+			<li title="Opt for mobility services to add more power to your lease"><a href="/EE/mobilityServices.htm">Loan Details</a></li>
+			<!-- <li title=""><a href=""></a></li> -->
+</ul>
+
+
+
+	<div class="card card-4"  id="content-div">
+                <div class="card-body">
+                    <h2 class="title">Loan-Details-Form</h2>
+		<div style="text-align: justify; ">
+							User Portal Provides you to enter you Loan Details.
+							This is to identify or view your loan records.
+							 <br><br>
+				
+							Complete the form below and get access to a special discount voucher code that can be used on 
+							<a target="__new" href="https://www.revv.co.in/">www.revv.co.in</a> or the Revv App.
+							<a href="https://www.revv.co.in/policy" target="__new">Click here</a> to read Revv's Terms &amp; 
+							Conditions.<br><br>
+						</div>
+	</div>
+
+	<%-- <form:form action="${pageContext.request.contextPath}/submitlaptopEmi" method="POST" modelAttribute="laptopEmiBean" id="laptopEmiForm">        	
         	<div align="center">
         		<h1>Loan Details</h1>
         	</div>
@@ -88,14 +117,10 @@ $( function() {
 			<img alt="close" class="close" id="exitAddEmi" src="resource/exit_btn_popup.gif"></a>
         	</div>		
         	
-        </form:form>
-       
+        </form:form> --%>
+       </div>
 </div>
 
-<div class="footer-panel">
-		<p class="center">© 2017 - All Rights Reserved - MedBikePortal  | <a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
-		<span class="better-view">Best viewed in Google Chrome.</span></p>
-</div>
 
 </body>
 </html>

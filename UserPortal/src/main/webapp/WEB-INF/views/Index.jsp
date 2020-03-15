@@ -264,7 +264,7 @@ function submitData(){
 <div class="mainDiv" id="mainDiv" >
 <h1>${newKey}</h1>
 <c:choose>
-	<c:when test="${techStatus eq 'HCLTECH'}">
+	<c:when test="${techStatus eq 'hcl'}">
 			<div align="center" class="empl-details">
 			${techStatus}
 			</div>
@@ -288,7 +288,7 @@ function submitData(){
                                                        </span></li>                                                                                   
                      </ul>
 
-                     <ul class="right-row1">
+                     <ul class="right-row1" style="width: 273px;">
                            
                            <li><label>Tower:</label><span>${tower}
 

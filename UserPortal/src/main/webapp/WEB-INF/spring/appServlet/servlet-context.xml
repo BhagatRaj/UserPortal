@@ -41,6 +41,7 @@
 	<beans:property name="annotatedClasses">
 	<beans:list>
 		<beans:value>com.tutorials.userregbean.UserRegBean</beans:value>
+		
 	</beans:list>
 	</beans:property>
 	<beans:property name="hibernateProperties">
@@ -58,6 +59,18 @@
 	<beans:property name="checkWriteOperations" value="false"/> 
 </beans:bean>
 <!-- Hibernate Template Configuration Ends -->
+
+<!-- File Upload Configuration Bean Details  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	      <beans:property name="maxUploadSize" value="1000000000" /> 
+	</beans:bean>
+
+ <beans:bean id="uploadService" class="com.tutorials.FileUploadService.FileUploadService" autowire="byType">
+  </beans:bean>
+ 
+ <beans:bean id="fileUploadDao" class="com.tutorials.FileUploadDao.FileUploadDao" autowire="byType">
+  </beans:bean>
+ 
  
   <beans:bean id="userRegisterDAO" class="com.tutorials.userregDao.UserRegisterDAOimpl">
    <beans:property name="sessionFactory" ref="sessionFactory"/>
@@ -70,6 +83,10 @@
    
    <beans:bean id="creditDao" class="com.tutorials.CredDaoImpl.CreditDaoImpl">
    <beans:property name="dataSource" ref="dataSource"/>
+   </beans:bean>
+   
+   <beans:bean id="detaislDAO" class="com.tutorials.LoanDetailsImpl.LoanDetailsImpl">
+   <beans:property name="sessionFactory" ref="sessionFactory"/>
    </beans:bean>
 
 <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
