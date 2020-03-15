@@ -2,10 +2,12 @@ package com.tutorials.demo;
 import com.tutorials.LoanDetaislDao.LoanDetailsDAO;
 import com.tutorials.Utils.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +17,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysql.jdbc.Constants;
 import com.tutorials.bean.LoanDetailsPojo;
 import com.tutorials.bean.LoanDetailsVO;
+import com.tutorials.bean.LoanPropBean;
 import com.tutorials.bean.UserLoanBean;
 import com.tutorials.userregbean.UserRegBean;
 
@@ -54,24 +60,28 @@ public class LoanDetailsController {
 		//LoanDetailsPojo loanDetailsPojo=new LoanDetailsPojo();
 		
 		model.put("tenureList", tenList);
-		model.put("loanDetailsModel",new LoanDetailsVO());
+		//model.put("loanDetailsModel",new LoanDetailsVO());
 		return "LoanDetails";
 	}
 	
 	
-	@RequestMapping(value="/saveLoanDetails")
-	public String saveLoanDetails(@ModelAttribute("loanDetailsModel") LoanDetailsVO loanDetailsVO, Model model) {
+	@RequestMapping(value="/saveLoanDetails", method=RequestMethod.POST )
+	public  @ResponseBody  String saveLoanDetails(@RequestBody LoanDetailsVO loanDetailsVO, Model model) {
 		
 		logger.info("Inside SaveLoanDetails--");
 		
 		String str=null;
 		try {
+			logger.info("logger-messate"+loanDetailsVO);
+			loanDetailsVO.setDatetimeCreated(new Date());
+			loanDetailsVO.setDatetimeUpdated(new Date());
 			
-			str=loanDetailsVO.getArea_city();
 			
-			str=detaislDAO.saveLoanDetails(loanDetailsVO);
 			
-			model.addAttribute("str", str);
+			
+			Serializable serializable=detaislDAO.saveLoanDetails(loanDetailsVO);
+			
+			model.addAttribute("str", serializable);
 			/*
 			
 			LoanDetailsVO detailsVO=new LoanDetailsVO();
@@ -104,10 +114,8 @@ public class LoanDetailsController {
 				logger.info(e);
 				logger.fatal(e);
 		}
-		return "LoanDetails";
-		
-		
-		
+		String message = "saved successfully";
+		return message;
 		
 	}
 	

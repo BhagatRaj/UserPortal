@@ -50,14 +50,14 @@ public class HomeController {
 	
 	
 	String url="http://localhost:8080/RestAPI/rest/produceboth/both";
-	
+	String projectDetailsAPI="http://localhost:8080/getProjectDetails";
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
                     LoginBean logBean = new LoginBean();
                     model.addAttribute("logBean", logBean);
                     System.out.println("---------Inside Login Controller.java-----------");
-                    return "LoginPage";
+                    return "Medical_Page";
 
     }               
 
@@ -97,7 +97,7 @@ public class HomeController {
 			}
 			
 		}		
-		session.setAttribute("userName", logBean.getUserName());
+		session.setAttribute("userName", logBean.getUserName().toUpperCase());
 		session.setAttribute(com.tutorials.Utils.Constants.USER_SESSION_EMAIL, beanVO.getUser_Email());
 		session.setAttribute(com.tutorials.Utils.Constants.USER_SESSION_MODEL, logBean);
 		
@@ -111,7 +111,7 @@ public class HomeController {
 		}
        detailsBean=portalDao.getEmploymentList(techStatus);
        
-       ProjectDetailsRepsonse projDetailsResponse=restTemplate.getForObject(url, ProjectDetailsRepsonse.class);
+       ProjectDetailsRepsonse projDetailsResponse=restTemplate.getForObject(projectDetailsAPI+"/"+techStatus, ProjectDetailsRepsonse.class);
        
         model.put("empId", detailsBean.getEmpID());
         model.put("empName", detailsBean.getEmpName());
@@ -123,7 +123,8 @@ public class HomeController {
         
         model.put("projCode", projDetailsResponse.getProjectCode());
         model.put("projName", projDetailsResponse.getProjectName());
-        model.put("golubId", projDetailsResponse.getGolubID());
+        model.put("clientName", projDetailsResponse.getClientName());
+        model.put("projJoinDate",projDetailsResponse.getProjJoinDate());
         
         
         
@@ -207,6 +208,8 @@ public class HomeController {
 		public @ResponseBody String addEmiforAutMob(@RequestParam("month") String month,@RequestParam("amountPaid") String amountPaid, @RequestParam("paidDate") String paidDate,@RequestParam("bikeName") String bikeName)
 				{
 					AutoMobSaveBean autoMobSaveBean = new AutoMobSaveBean();
+					
+									
 					autoMobSaveBean.setMonth(month);
 					autoMobSaveBean.setAmountToPaid(amountPaid);
 					autoMobSaveBean.setDateOfPaid(paidDate);

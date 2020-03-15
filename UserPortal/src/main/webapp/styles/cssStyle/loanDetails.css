@@ -304,7 +304,7 @@ td.active {
 }
 
 input[type="date" i] {
-  padding: 14px;
+  padding: 0px;
 }
 
 .table-condensed td, .table-condensed th {
@@ -349,29 +349,19 @@ input[type="date" i] {
 /* ==========================================================================
    #FORM
    ========================================================================== */
-input {
-  outline: none;
-  margin: 0;
-  border: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  width: 100%;
-  font-size: 14px;
-  font-family: inherit;
-}
+input {height: 22px;display: inline-block;padding: 0px 25px;border: 1px solid #dacbbd;border-radius: 5px;line-height: 15px;}
 
 .input--style-4 {
-  line-height: 25px;
-  background: #ded8d8;
+  line-height: 14px;
+  background: #f1f1f1;
   -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
   box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 0 20px;
-  font-size: 16px;
+  padding: 0px 0px 2px;
+  font-size: 14px;
   color: #666;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;

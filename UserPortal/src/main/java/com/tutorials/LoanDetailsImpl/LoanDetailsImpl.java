@@ -1,16 +1,21 @@
 package com.tutorials.LoanDetailsImpl;
 
+import java.io.Serializable;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tutorials.LoanDetaislDao.LoanDetailsDAO;
 import com.tutorials.bean.LoanDetailsVO;
+import com.tutorials.bean.LoanPropBean;
 
 
-@Repository("detaislDAO")
+@Service("detaislDAO")
 public class LoanDetailsImpl  implements LoanDetailsDAO{
 	
 	@Autowired
@@ -28,10 +33,13 @@ public class LoanDetailsImpl  implements LoanDetailsDAO{
 		this.sessionFactory = sessionFactory;
 	}
 
-	public String saveLoanDetails(LoanDetailsVO loanDetailsVO) {
+
+	
+	@Transactional
+	public Serializable saveLoanDetails(LoanDetailsVO loanDetailsVO) {
 		Session session=sessionFactory.getCurrentSession();
-		session.persist(loanDetailsVO);
-		return "save";
+		Serializable id=session.save(loanDetailsVO);
+		return "save"+id;
 	}
 
 }

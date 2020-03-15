@@ -68,12 +68,16 @@ import com.tutorials.bean.CreditCardBean;
 					//for git bash
 					@RequestMapping(value = "/submitCreditDetails", method = RequestMethod.POST)
 					public String submitCreditDetails(@ModelAttribute("creditCardBean") @Valid CreditCardBean creditCardBean,	
-								HttpServletRequest request) {
+								HttpServletRequest request, ModelMap modelMap) {
 							HttpSession session=request.getSession(true);
 							CreditCardBean cardBean=new CreditCardBean();
 							String userName=(String)session.getAttribute("userName");
 							cardBean=creditDao.creditDetails(creditCardBean,userName);
-							return "Index";
+							if(null!=cardBean) {
+								modelMap.put("saveFlag", "Y");
+							}
+							
+							return "CreditCardDetails";
 						}
 					
 					@RequestMapping(value="/")

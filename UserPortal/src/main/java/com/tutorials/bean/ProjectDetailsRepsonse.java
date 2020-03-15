@@ -1,5 +1,6 @@
 package com.tutorials.bean;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,22 @@ public class ProjectDetailsRepsonse {
 	private String golubID;
 	
 	
+	private String clientName;
+	private LocalDate projJoinDate;
+	
+	
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	public LocalDate getProjJoinDate() {
+		return projJoinDate;
+	}
+	public void setProjJoinDate(LocalDate projJoinDate) {
+		this.projJoinDate = projJoinDate;
+	}
 	public String getProjectCode() {
 		return projectCode;
 	}

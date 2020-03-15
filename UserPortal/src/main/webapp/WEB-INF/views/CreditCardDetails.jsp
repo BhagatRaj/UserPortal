@@ -9,6 +9,7 @@
   
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/medCommon.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/credit-details-form.css"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -17,9 +18,17 @@
 
 <style type="text/css">
 
+.credit-form .form-element{
+	width: 196px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
 .creditCardAdd{
-background-image: url(${pageContext.request.contextPath}/backgroundWall/background6.jpg);
-height: 270px;
+/* background-image: url(${pageContext.request.contextPath}/backgroundWall/background6.jpg);
+height: 270px; */
+	height: 255px;
+    background-color: #E2E2E4;
 }
 
 
@@ -69,9 +78,26 @@ h1.page-title{
 
 <script type="text/javascript">
 
-$( function() {
-    $( "#creditExpMonth" ).datepicker();
-  } );
+
+$(document).ready(function () {
+    var saveFlag = $("#saveFlag").val();
+    if (saveFlag != "") {
+    	showPopupForSubmit('credit-add-submit');
+    }
+});
+
+
+function showPopupForSubmit(id){
+	$("#" + id).dialog({
+		autoOpen : false,
+		height : '172',
+		width : '351',
+		modal : true,
+		title : 'Message'
+		
+	});
+	$("#"+id).dialog('open');
+}
 
 function exitFromCredDetails(){
 	window.location = "/UserPortal/CreditController/exitFromCredit";
@@ -92,14 +118,24 @@ function isNumberKey(evt)
   </head>
   <body>
  
-       <div style="width: 100%;
+   <div style="width: 100%;
     float: left;
     box-sizing: border-box;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     margin-bottom: 0px" class="top-bar black quote-box">
-        <form:form action="${pageContext.request.contextPath}/CreditController/submitCreditDetails" method="POST" modelAttribute="creditCardBean">
-        
+    
+    				<div class="credit-add-submit" id="credit-add-submit" style="display: none; height: 98px;" >
+    					<b>Thank you for submitting the form.</b>
+    				<br>
+    				<br>
+    				<br>
+    				<input type="button" style="float: rigth; padding:4px 10px 0px;" class="lpin-theme-button" value="OK" onclick="javascript:window.location='${ctx}/';"/>
+    				</div>
+    
+    
+        <form:form action="${pageContext.request.contextPath}/CreditController/submitCreditDetails" method="POST"  cssClass="lpin-form" modelAttribute="creditCardBean">
+        	<input type="hidden" name="saveFlag" id="saveFlag" value="${saveFlag}">
         	<h1 class="page-title">Credit Add</h1>
         	<p class="corner-button-style" style="border-radius: 15px;">
 						Welcome
@@ -109,7 +145,78 @@ function isNumberKey(evt)
         
         	<div class="creditCardAdd">
         	
-        	<table class="table table-striped" style="text-align:center; width: 100%;" >
+        	<div class="form-element">
+        		<label for="cardName" class="required">Card-Name</label>
+        				<select id="cardName">
+        				<option value="select">Select</option>
+        				<c:forEach items="${listforDropDown}" var="cardDrowpDown">
+						<option value="${cardDrowpDown.cardName}">${cardDrowpDown.cardName}</option>
+						</c:forEach>
+						</select>
+        	
+        	</div>
+        	<div class="form-element">
+        	<label for="CardNumber" class="required">Card-Number</label>
+        				<select id="cardNum" >
+        				<option value="select">Select</option>
+        				<c:forEach items="${listforDropDown}" var="cardDrowpDown">
+						<option value="${cardDrowpDown.cardNum}">${cardDrowpDown.cardNum}</option>
+						</c:forEach>
+						</select>
+        	
+        	</div>
+        	<div class="form-element">
+        	<label for="creditExpense" class="required">Credit-Expense</label>
+        	<input type="text" name="creditExpAm" id="creditExpAm" onkeypress="return isNumberKey(event)"  required="required"/>
+        	</div>
+        	  	
+        	<div class="form-element">
+        	<label for="credit-year" class="required">Date</label>
+        	<input type="date" name="creditExpMonth" id="creditExpMonth" required="required"/>
+        	</div>
+        	
+        	<div class="form-element">
+        	<label for="Year" class="required">Year</label>
+        	<select id="creditExpYear" style="width: 90px;">
+						<option value="Year">Year</option>
+    					<c:forEach begin="0" end="15" var="yearListSel">
+						<option value="${yearList - yearListSel}">${yearList - yearListSel}</option>
+						</c:forEach>
+						</select>
+        	</div>
+        	
+        	<div class="form-element">
+        	<label for="paid-status" class="required">Paid-Status</label>
+        	<select id="cardStatus" name="cardStatus" required= "required">
+        					<option value="paid">Paid</option>
+        					<option value="nPaid">Not Paid</option>
+        				</select>
+        	</div>
+        	
+        	<div class="form-element">
+        	<label for="card-type" class="required">Card-Type</label>
+        	<select id="cardType">
+        				<option value="Year">Select</option>
+        				<c:forEach items="${listforDropDown}" var="cardDrowpDown">
+						<option value="${cardDrowpDown.cardType}">${cardDrowpDown.cardType}</option>
+						</c:forEach>
+						</select>
+        	</div>
+        	
+        	<div class="form-element">
+        	<label for="card-type" class="required">Description</label>
+        	<input type="text" name="comment" style="height: 45px; width: 160px;" id="comment"  required="required"/>
+      				<!-- <texttextarea
+      				
+      				area rows="8" cols="100" name="comment" id="comment" style="border-color: black;border-radius: 2px;">
+					</textarea>   	 -->	
+        		</div>
+        		<div class="form-element">
+        		<button type="submit" class="lpin-theme-button" name="submit-form" id="submit-form" style="float: right;margin-right: 90px;margin-top: 0px;">
+									SUBMIT
+								</button>	
+        	</div>
+        	<%-- <table class="table table-striped" style="text-align:center; width: 100%;" >
         		<thead>
         		<tr style="background-color: mediumseagreen;">
         			<th width="20%">CardName</th>
@@ -156,7 +263,8 @@ function isNumberKey(evt)
 						</c:forEach>
 						</select>
         				</td>
-        				<td><select id="cardStatus" name="cardStatus" class="credit-user-input" required>
+        				<td>
+        				<select id="cardStatus" name="cardStatus" class="credit-user-input" required>
         					<option value="paid">Paid</option>
         					<option value="nPaid">Not Paid</option>
         				</select>
@@ -183,12 +291,8 @@ function isNumberKey(evt)
 					</textarea> 
 					</td>
 					</tr> -->
-        		</table>
-        		<div align="center">
-        			
-      				<textarea rows="8" cols="100" name="comment" id="comment" style="border-color: black;border-radius: 2px;">
-					</textarea>   		
-        		</div>
+        		</table> --%>
+        		
         		
         		<!-- <div>
         			
@@ -196,7 +300,7 @@ function isNumberKey(evt)
         		</div> -->
         		
         		
-        	<div align="left">
+        	<!-- <div align="left">
         	<table>
         	<tr>
         	<td><input type="submit" value="Add" class="buttonAdd"/></td>
@@ -211,7 +315,7 @@ function isNumberKey(evt)
         	</tr>
         
         	</table>
-        	</div>
+        	</div> -->
         	
         	</div>
         </form:form>
